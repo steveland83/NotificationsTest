@@ -25,7 +25,7 @@ namespace Notifications
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" }); });
+            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Info { Title = "Notifications API", Version = "v1" }); });
 
             var connection = @"Server=.;Database=notifications-db;Trusted_Connection=True;ConnectRetryCount=0";
             services.AddDbContext<NotificationsDbContext>
@@ -39,7 +39,7 @@ namespace Notifications
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseSwagger();
-            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"); });
+            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "Notifications API V1"); });
 
             if (env.IsDevelopment())
                 app.UseDeveloperExceptionPage();
