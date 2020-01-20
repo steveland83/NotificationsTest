@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Notifications.Common.Interfaces;
+using Notifications.Common.Settings;
 using Notifications.DataAccess;
 using Notifications.DataAccess.Access;
 using Notifications.Services;
@@ -27,9 +28,9 @@ namespace Notifications
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Info { Title = "Notifications API", Version = "v1" }); });
 
-            var connection = @"Server=.;Database=notifications-db;Trusted_Connection=True;ConnectRetryCount=0";
+            var notificationDbConfig = Configuration.Get<NotificationDbConfig>();
             services.AddDbContext<NotificationsDbContext>
-                (options => options.UseSqlServer(connection));
+                (options => options.UseSqlServer(notificationDbConfig.NotificationsDbConnection));
 
             services.AddTransient<INotificationsAccess, NotificationsAccess>();
             services.AddTransient<INotificationsService, NotificationsService>();
