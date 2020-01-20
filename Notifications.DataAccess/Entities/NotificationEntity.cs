@@ -1,5 +1,4 @@
 ﻿using System;
-using Notifications.Common.Models;
 
 namespace Notifications.DataAccess.Entities
 {

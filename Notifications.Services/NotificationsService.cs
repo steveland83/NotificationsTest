@@ -1,8 +1,7 @@
-﻿using System;
+﻿using Notifications.Common.Interfaces;
+using Notifications.Common.Models;
 using System.Collections.Generic;
 using System.Linq;
-using Notifications.Common.Interfaces;
-using Notifications.Common.Models;
 
 namespace Notifications.Services
 {

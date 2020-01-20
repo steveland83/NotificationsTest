@@ -1,7 +1,5 @@
-﻿using System;
+﻿using Notifications.Common.Models;
 using System.Collections.Generic;
-using System.Text;
-using Notifications.Common.Models;
 
 namespace Notifications.Common.Interfaces
 {

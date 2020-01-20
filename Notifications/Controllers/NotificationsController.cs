@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Notifications.Common.Interfaces;
 using Notifications.Common.Models;
+using System.Collections.Generic;
 
 namespace Notifications.Controllers
 {
