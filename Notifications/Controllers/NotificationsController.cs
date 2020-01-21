@@ -2,6 +2,7 @@
 using Notifications.Common.Interfaces;
 using Notifications.Common.Models;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Notifications.Controllers
 {
@@ -18,9 +19,9 @@ namespace Notifications.Controllers
 
         [Route("")]
         [HttpGet]
-        public IReadOnlyCollection<NotificationModel> Get()
+        public async Task<IReadOnlyCollection<NotificationModel>> Get()
         {
-            return _notificationsService.GetAllNotifications();
+            return await _notificationsService.GetAllNotifications();
         }
     }
 }

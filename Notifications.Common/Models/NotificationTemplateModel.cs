@@ -5,7 +5,7 @@ using Notifications.Common.Models.Enums;
 
 namespace Notifications.Common.Models
 {
-    public class NotificationTemplate
+    public class NotificationTemplateModel
     {
         public Guid Id { get; set; }
         public NotificationEventType EventType { get; set; }
