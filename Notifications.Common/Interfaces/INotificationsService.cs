@@ -9,5 +9,6 @@ namespace Notifications.Common.Interfaces
     {
         Task<IReadOnlyCollection<NotificationModel>> GetAllNotifications();
         Task<IReadOnlyCollection<NotificationModel>> GetUserNotifications(Guid userId);
+        Task<NotificationModel> CreateEventNotification(EventModel eventModel);
     }
 }

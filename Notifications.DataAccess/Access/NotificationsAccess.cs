@@ -7,6 +7,7 @@ using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using Notifications.Common.Interfaces;
 using Notifications.Common.Models;
+using Notifications.DataAccess.Entities;
 
 namespace Notifications.DataAccess.Access
 {
@@ -34,6 +35,24 @@ namespace Notifications.DataAccess.Access
                 .Where(notification => notification.UserId == userId).ToListAsync();
 
             return results.Select(x => mapper.Map<NotificationModel>(x)).ToList();;
+        }
+
+        public async Task<NotificationModel> SaveNotification(NotificationModel notificationModel)
+        {
+            var notificationEntity = mapper.Map<NotificationEntity>(notificationModel);
+
+            if (notificationModel.Id == Guid.Empty)
+            {
+                dbContext.Notifications.Add(notificationEntity);
+            }
+            else
+            {
+                dbContext.Notifications.Update(notificationEntity);
+            }
+
+            await dbContext.SaveChangesAsync();
+
+            return mapper.Map<NotificationModel>(notificationEntity);
         }
     }
 }

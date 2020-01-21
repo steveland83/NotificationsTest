@@ -9,5 +9,6 @@ namespace Notifications.Common.Interfaces
     {
         Task<IList<NotificationModel>> GetAllNotifications();
         Task<IList<NotificationModel>> GetUserNotifications(Guid userId);
+        Task<NotificationModel> SaveNotification(NotificationModel notificationModel);
     }
 }

@@ -4,6 +4,7 @@ using Notifications.Common.Interfaces;
 using Notifications.Common.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Notifications.Common.Exceptions;
 
 namespace Notifications.Controllers
 {
@@ -28,6 +29,20 @@ namespace Notifications.Controllers
         public async Task<IReadOnlyCollection<NotificationModel>> Get([FromRoute] Guid userId)
         {
             return await _notificationsService.GetUserNotifications(userId);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] EventModel eventModel)
+        {
+            try
+            {
+                var notification = await _notificationsService.CreateEventNotification(eventModel);
+                return Ok(notification);
+            }
+            catch (EventTypeNotSupportedException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

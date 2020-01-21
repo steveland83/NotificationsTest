@@ -12,6 +12,7 @@ using Notifications.DataAccess.Access;
 using Notifications.DataAccess.Mapping;
 using Notifications.Services;
 using Swashbuckle.AspNetCore.Swagger;
+using INotificationTemplatesAccess = Notifications.Common.Interfaces.INotificationTemplatesAccess;
 
 namespace Notifications
 {
@@ -44,6 +45,7 @@ namespace Notifications
             }
 
             services.AddTransient<INotificationsAccess, NotificationsAccess>();
+            services.AddTransient<INotificationTemplatesAccess, NotificationTemplatesAccess>();
             services.AddTransient<INotificationsService, NotificationsService>();
 
             services.AddAutoMapper(typeof(NotificationMappingProfile));
