@@ -34,7 +34,7 @@ namespace Notifications.DataAccess.Access
             var results = await dbContext.Notifications.ProjectTo<NotificationModel>(mapper.ConfigurationProvider)
                 .Where(notification => notification.UserId == userId).ToListAsync();
 
-            return results.Select(x => mapper.Map<NotificationModel>(x)).ToList();;
+            return results.Select(x => mapper.Map<NotificationModel>(x)).ToList();
         }
 
         public async Task<NotificationModel> SaveNotification(NotificationModel notificationModel)
@@ -42,13 +42,9 @@ namespace Notifications.DataAccess.Access
             var notificationEntity = mapper.Map<NotificationEntity>(notificationModel);
 
             if (notificationModel.Id == Guid.Empty)
-            {
                 dbContext.Notifications.Add(notificationEntity);
-            }
             else
-            {
                 dbContext.Notifications.Update(notificationEntity);
-            }
 
             await dbContext.SaveChangesAsync();
 

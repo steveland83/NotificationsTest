@@ -10,6 +10,7 @@ namespace Notifications.DataAccess.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public Guid Id { get; set; }
+
         public NotificationEventType EventType { get; set; }
         public string Body { get; set; }
         public string Title { get; set; }

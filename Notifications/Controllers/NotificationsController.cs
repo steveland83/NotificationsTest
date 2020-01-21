@@ -1,10 +1,10 @@
 ﻿using System;
-using Microsoft.AspNetCore.Mvc;
-using Notifications.Common.Interfaces;
-using Notifications.Common.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Notifications.Common.Exceptions;
+using Notifications.Common.Interfaces;
+using Notifications.Common.Models;
 
 namespace Notifications.Controllers
 {
@@ -16,7 +16,7 @@ namespace Notifications.Controllers
 
         public NotificationsController(INotificationsService notificationsService)
         {
-            this._notificationsService = notificationsService;
+            _notificationsService = notificationsService;
         }
 
         [HttpGet]

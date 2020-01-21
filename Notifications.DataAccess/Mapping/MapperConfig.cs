@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using AutoMapper;
-using Microsoft.Extensions.Options;
-using Notifications.Common.Models;
-using Notifications.DataAccess.Entities;
+﻿using AutoMapper;
 
 namespace Notifications.DataAccess.Mapping
 {
@@ -13,10 +6,7 @@ namespace Notifications.DataAccess.Mapping
     {
         public static MapperConfiguration Configure()
         {
-            var config = new MapperConfiguration(cfg =>
-            {
-                cfg.AddProfile<NotificationMappingProfile>();
-            });
+            var config = new MapperConfiguration(cfg => { cfg.AddProfile<NotificationMappingProfile>(); });
 
             config.AssertConfigurationIsValid();
 

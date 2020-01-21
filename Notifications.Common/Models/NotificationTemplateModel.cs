@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Notifications.Common.Models.Enums;
 
 namespace Notifications.Common.Models

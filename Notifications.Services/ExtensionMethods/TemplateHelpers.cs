@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Notifications.Services.ExtensionMethods
+﻿namespace Notifications.Services.ExtensionMethods
 {
     public static class TemplateHelpers
     {

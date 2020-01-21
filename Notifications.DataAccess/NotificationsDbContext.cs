@@ -10,7 +10,6 @@ namespace Notifications.DataAccess
         public NotificationsDbContext(DbContextOptions<NotificationsDbContext> options)
             : base(options)
         {
-
         }
 
         public DbSet<NotificationEntity> Notifications { get; set; }
@@ -19,11 +18,12 @@ namespace Notifications.DataAccess
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<NotificationTemplateEntity>().HasData(new NotificationTemplateEntity()
+            modelBuilder.Entity<NotificationTemplateEntity>().HasData(new NotificationTemplateEntity
             {
                 Id = Guid.NewGuid(),
                 EventType = NotificationEventType.AppointmentCancelled,
-                Body = "Hi {Firstname}, your appointment with {OrganisationName} at {AppointmentDateTime} has been - cancelled for the following reason: {Reason}.",
+                Body =
+                    "Hi {Firstname}, your appointment with {OrganisationName} at {AppointmentDateTime} has been - cancelled for the following reason: {Reason}.",
                 Title = "Appointment Cancelled"
             });
         }

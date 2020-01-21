@@ -1,7 +1,7 @@
 ﻿using System;
-using Notifications.Common.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Notifications.Common.Models;
 
 namespace Notifications.Common.Interfaces
 {

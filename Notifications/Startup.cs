@@ -12,7 +12,6 @@ using Notifications.DataAccess.Access;
 using Notifications.DataAccess.Mapping;
 using Notifications.Services;
 using Swashbuckle.AspNetCore.Swagger;
-using INotificationTemplatesAccess = Notifications.Common.Interfaces.INotificationTemplatesAccess;
 
 namespace Notifications
 {
@@ -29,20 +28,18 @@ namespace Notifications
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Info { Title = "Notifications API", Version = "v1" }); });
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info {Title = "Notifications API", Version = "v1"});
+            });
 
             var notificationDbConfig = Configuration.Get<NotificationDbConfig>();
             if (notificationDbConfig.UseInMemoryTestingDb)
-            {
-
                 services.AddDbContext<NotificationsDbContext>
                     (options => options.UseInMemoryDatabase("TestDatabase"));
-            }
             else
-            {
                 services.AddDbContext<NotificationsDbContext>
                     (options => options.UseSqlServer(notificationDbConfig.NotificationsDbConnection));
-            }
 
             services.AddTransient<INotificationsAccess, NotificationsAccess>();
             services.AddTransient<INotificationTemplatesAccess, NotificationTemplatesAccess>();

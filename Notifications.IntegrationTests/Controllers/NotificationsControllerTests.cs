@@ -71,7 +71,7 @@ namespace Notifications.IntegrationTests.Controllers
         private readonly List<NotificationEntity> notificationEntities;
         private readonly Guid currentUserId = Guid.NewGuid();
         private readonly NotificationsDbContext dbContext;
-        private string notificationsUri = "/api/notifications/";
+        private readonly string notificationsUri = "/api/notifications/";
         private HttpClient client { get; }
 
         [Fact]
@@ -135,7 +135,7 @@ namespace Notifications.IntegrationTests.Controllers
             };
 
             var requestContent = new StringContent(JsonConvert.SerializeObject(eventBody,
-                    new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() }),
+                    new JsonSerializerSettings {ContractResolver = new CamelCasePropertyNamesContractResolver()}),
                 Encoding.UTF8, "application/json");
 
             // Act
@@ -171,13 +171,13 @@ namespace Notifications.IntegrationTests.Controllers
             };
 
             var requestContent = new StringContent(JsonConvert.SerializeObject(eventBody,
-                    new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() }),
+                    new JsonSerializerSettings {ContractResolver = new CamelCasePropertyNamesContractResolver()}),
                 Encoding.UTF8, "application/json");
 
             // Act
             var response = await client.PostAsync(notificationsUri, requestContent);
 
-            Assert.Equal(System.Net.HttpStatusCode.BadRequest, response.StatusCode);
+            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
             Assert.Equal(notificationsBeforePost, dbContext.Notifications.Count());
         }
     }
