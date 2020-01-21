@@ -15,20 +15,25 @@ namespace Notifications.DataAccess.Access
         private readonly NotificationsDbContext dbContext;
         private readonly IMapper mapper;
 
-        public NotificationsAccess(NotificationsDbContext dbContext)
+        public NotificationsAccess(NotificationsDbContext dbContext, IMapper mapper)
         {
             this.dbContext = dbContext;
+            this.mapper = mapper;
         }
 
         public async Task<IList<NotificationModel>> GetAllNotifications()
         {
-            return await dbContext.Notifications.ProjectTo<NotificationModel>(mapper.ConfigurationProvider).ToListAsync();
+            var results = await dbContext.Notifications.ToListAsync();
+
+            return results.Select(x => mapper.Map<NotificationModel>(x)).ToList();
         }
 
         public async Task<IList<NotificationModel>> GetUserNotifications(Guid userId)
         {
-            return await dbContext.Notifications.ProjectTo<NotificationModel>(mapper.ConfigurationProvider)
+            var results = await dbContext.Notifications.ProjectTo<NotificationModel>(mapper.ConfigurationProvider)
                 .Where(notification => notification.UserId == userId).ToListAsync();
+
+            return results.Select(x => mapper.Map<NotificationModel>(x)).ToList();;
         }
     }
 }

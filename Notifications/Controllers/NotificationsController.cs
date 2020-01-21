@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using Microsoft.AspNetCore.Mvc;
 using Notifications.Common.Interfaces;
 using Notifications.Common.Models;
 using System.Collections.Generic;
@@ -17,11 +18,16 @@ namespace Notifications.Controllers
             this._notificationsService = notificationsService;
         }
 
-        [Route("")]
         [HttpGet]
         public async Task<IReadOnlyCollection<NotificationModel>> Get()
         {
             return await _notificationsService.GetAllNotifications();
+        }
+
+        [HttpGet("{userId}")]
+        public async Task<IReadOnlyCollection<NotificationModel>> Get([FromRoute] Guid userId)
+        {
+            return await _notificationsService.GetUserNotifications(userId);
         }
     }
 }

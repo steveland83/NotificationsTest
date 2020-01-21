@@ -9,7 +9,9 @@ namespace Notifications.DataAccess
     {
         public NotificationsDbContext(DbContextOptions<NotificationsDbContext> options)
             : base(options)
-        { }
+        {
+
+        }
 
         public DbSet<NotificationEntity> Notifications { get; set; }
         public DbSet<NotificationTemplateEntity> NotificationTemplates { get; set; }
